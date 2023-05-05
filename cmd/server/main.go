@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/yewai01/user_list_go/handlers"
-	"github.com/yewai01/user_list_go/repositories"
-	"github.com/yewai01/user_list_go/services"
+	// "github.com/yewai01/user_list_go/handlers"
+	// "github.com/yewai01/user_list_go/repositories"
+	// "github.com/yewai01/user_list_go/services"
 )
 
 func main() {

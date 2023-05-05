@@ -1,4 +1,4 @@
-module main
+module github.com/yewai01/user_list_go
 
 go 1.20
 
