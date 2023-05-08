@@ -20,17 +20,17 @@ func (uRepo *UserService) GetUsers() ([]models.User, error) {
 }
 
 func (uRepo *UserService) GetUser(id int) (models.User, error) {
-	return models.User{}, nil
+	return uRepo.userRepo.GetUser(id)
 }
 
 func (uRepo *UserService) CreateUser(user models.User) error {
-	return nil
+	return uRepo.userRepo.CreateUser(user)
 }
 
 func (uRepo *UserService) UpdateUser(id int, user models.User) error {
-	return nil
+	return uRepo.userRepo.UpdateUser(id, user)
 }
 
 func (uRepo *UserService) DeleteUser(id int) error {
-	return nil
+	return uRepo.userRepo.DeleteUser(id)
 }

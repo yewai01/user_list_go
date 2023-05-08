@@ -1,6 +1,9 @@
 package repositories
 
-import "user_list_go/app/models"
+import (
+	"user_list_go/app/models"
+	"user_list_go/bootstrap"
+)
 
 type UserRepository struct {
 	Users []models.User
@@ -11,15 +14,21 @@ func NewUserRepository() *UserRepository {
 }
 
 func (uRepo *UserRepository) GetUsers() ([]models.User, error) {
-	return []models.User{
-		{ID: 1, Name: "Ye Wai", Birthday: 1994, Gender: "Female"},
-		{ID: 2, Name: "The Godfather", Birthday: 1972, Gender: "Male"},
-		{ID: 3, Name: "The Dark Knight", Birthday: 2008, Gender: "Male"},
-	}, nil
+	var users []models.User
+	res := bootstrap.DB.Find(&users)
+	if res.Error != nil {
+		return users, res.Error
+	}
+	return users, nil
 }
 
 func (uRepo *UserRepository) GetUser(id int) (models.User, error) {
-	return models.User{}, nil
+	var user models.User
+	res := bootstrap.DB.First(&user, id)
+	if res.Error != nil {
+		return user, res.Error
+	}
+	return user, nil
 }
 
 func (uRepo *UserRepository) CreateUser(user models.User) error {

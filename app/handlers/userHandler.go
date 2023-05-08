@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strconv"
 	"user_list_go/app/services"
 
 	"github.com/labstack/echo/v4"
@@ -24,11 +25,13 @@ func (handler *userHandler) GetUsers(c echo.Context) error {
 }
 
 func (handler *userHandler) GetUser(c echo.Context) error {
-	users, err := handler.service.GetUsers()
+	idStr := c.Param("id")
+	id, _ := strconv.Atoi(idStr)
+	user, err := handler.service.GetUser(id)
 	if err != nil {
 	}
 
-	return c.JSON(http.StatusOK, users)
+	return c.JSON(http.StatusOK, user)
 }
 
 func (handler *userHandler) CreateUser(c echo.Context) error {

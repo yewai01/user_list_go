@@ -8,9 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-var Dataa *gorm.DB
+var DB *gorm.DB
 
-func ConnectToDB() *gorm.DB {
+func ConnectToDB() {
 	var err error
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
@@ -20,9 +20,8 @@ func ConnectToDB() *gorm.DB {
 
 	dsn := user + ":" + pass + "@tcp(" + host + ":" + port + ")" + "/" + dbname + "?charset=utf8mb4&parseTime=True&loc=Local"
 
-	Dataa, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Fail to connect db", err)
 	}
-	return Dataa
 }
